@@ -1,6 +1,6 @@
 package com.ngzhongqin.bulkConvertTiffToPng;
 
-import com.ngzhongqin.bulkConvertTiffToPng.worker.TiffToPngWorker;
+import com.ngzhongqin.bulkConvertTiffToPng.worker.DirectoryTreeWalker;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -10,7 +10,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BasicConfigurator.configure();
         logger.info("Started Main.main");
-        new TiffToPngWorker().convert("sample.tif","sample.png");
+        DirectoryTreeWalker directoryTreeWalker = new DirectoryTreeWalker();
+        directoryTreeWalker.walkAndConvert("/Users/zhongqin/IdeaProjects/BulkConvertTiffToPng");
 
     }
 }
