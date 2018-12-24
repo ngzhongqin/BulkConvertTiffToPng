@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BasicConfigurator.configure();
         logger.info("Started Main.main");
-        new TiffToPngWorker().convert();
+        new TiffToPngWorker().convert("sample.tif","sample.png");
+
     }
 }

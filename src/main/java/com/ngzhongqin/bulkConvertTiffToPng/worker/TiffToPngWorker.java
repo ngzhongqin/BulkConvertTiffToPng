@@ -15,12 +15,12 @@ public class TiffToPngWorker {
         logger.info("Created "+this.getClass().getName()+" started");
     }
 
-    public void convert() throws IOException {
-        convertTiffToPng();
+    public void convert(String fromFullPath, String toFullPath) throws IOException {
+        convertTiffToPng(fromFullPath,toFullPath);
     }
 
-    public void convertTiffToPng() throws IOException {
-        final BufferedImage tif = ImageIO.read(new File("sample.tif"));
-        ImageIO.write(tif, "png", new File("sample.png"));
+    public void convertTiffToPng(String fromFullPath, String toFullPath) throws IOException {
+        final BufferedImage tif = ImageIO.read(new File(fromFullPath));
+        ImageIO.write(tif, "png", new File(toFullPath));
     }
 }
