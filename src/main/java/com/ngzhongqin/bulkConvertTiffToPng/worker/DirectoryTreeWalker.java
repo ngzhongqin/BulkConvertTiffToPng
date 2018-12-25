@@ -3,6 +3,7 @@ package com.ngzhongqin.bulkConvertTiffToPng.worker;
 import com.ngzhongqin.bulkConvertTiffToPng.Main;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -60,13 +61,27 @@ public class DirectoryTreeWalker {
             logger.info("path.getRoot():"+path.getRoot());
             logger.info("getRelativePath:"+getRelativePath(Main.fromFolder,path));
             logger.info("path.getFileName():"+path.getFileName());
-            String newFilePath = Main.toFolder+getRelativePathWithoutFileName(path)+path.getFileName().toString().replace(".tif",".png");
+            String newPath = Main.toFolder+getRelativePathWithoutFileName(path);
+            String newFilePath = newPath+path.getFileName().toString().replace(".tif",".png");
+            logger.info("newPath:"+newPath);
             logger.info("newFilePath:"+newFilePath);
+            createFolderIfNotExist(newPath);
             try {
                     new TiffToPngWorker().convert(path.toString(),newFilePath);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+        }
+    }
+
+    public void createFolderIfNotExist(String directoryName){
+        File directory = new File(directoryName);
+        if (! directory.exists()){
+//            directory.mkdir();
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+            directory.mkdirs();
 
         }
     }
