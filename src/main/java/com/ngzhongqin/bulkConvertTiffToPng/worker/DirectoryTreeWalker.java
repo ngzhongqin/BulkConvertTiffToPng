@@ -56,13 +56,13 @@ public class DirectoryTreeWalker {
     }
 
     public void convertAndStoreTif(Path path){
-        if(path.getFileName().toString().endsWith(".tif")){
+        if(path.getFileName().toString().endsWith(".tiff")){
             logger.info("path:"+path);
             logger.info("path.getRoot():"+path.getRoot());
             logger.info("getRelativePath:"+getRelativePath(Main.fromFolder,path));
             logger.info("path.getFileName():"+path.getFileName());
             String newPath = Main.toFolder+getRelativePathWithoutFileName(path);
-            String newFilePath = newPath+path.getFileName().toString().replace(".tif",".png");
+            String newFilePath = newPath+path.getFileName().toString().replace(".tiff",".png");
             logger.info("newPath:"+newPath);
             logger.info("newFilePath:"+newFilePath);
             createFolderIfNotExist(newPath);
